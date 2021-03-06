@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>RanoColor</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'JetBrains Mono';">
+
+<div id="text" contenteditable="true" spellcheck="false" class="texter"></div>
+
+<div style="height: 40px;">
+<button onclick="colorise();" >Colorise</button>
+<button onclick="uncolorise();">Uncolorise</button>
+<button onclick="textarea.innerText = '';">Clear</button>
+<button onclick="copyText();">Copy</button>
+</div>
+<div class="section">
+	<input type="radio" name="op" id="rainbow">Rainbow<br>
+	<input type="radio" name="op" checked="true">Random<br>
+	<input type="radio" name="op" id="loops">Loops<input type="number" id="looplength"></textarea><br>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

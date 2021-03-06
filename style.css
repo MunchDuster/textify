@@ -1,0 +1,24 @@
+button {
+	border: none;
+	user-select: none;
+	outline: none;
+    background-color: #1de600;
+    color: white;
+    height: 30px;
+    margin: 5px;
+    width: max-content;
+}
+button:hover{
+	background-color : #1ecc03;
+}
+
+.section{
+	background-color: rgb(194, 194, 194);
+	display: inline-block;
+}
+.texter{
+	color:white; 
+	border: 2px solid grey; 
+	background-color: black;
+	outline: none;
+}
