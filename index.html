@@ -2,36 +2,47 @@
 <head>
 <title>RanoColor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" id="fontheader">
 <link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" href="mememan.png" type="image/png">
 
 </head>
 <body style="font-family: 'JetBrains Mono';">
 
-<div id="text" contenteditable="true" spellcheck="false" class="texter" ></div>
-<div>
-	<button style="vertical-align: top;"onclick="hideshow(document.getElementById('textchange'));">Text Color</button>
-	<div id="textchange" style="display:none; width:max-content; height:max-content; background-color: rgb(230, 230, 230);">
+<div id="text" contenteditable="true" spellcheck="false" class="texter" > Write me</div>
+<button onclick="textarea.innerText = '';">Clear</button>
+<button onclick="copyText();">Copy</button><br>
+<div class="outerBox">
+	<button class="rowButton" onclick="hideshow(document.getElementById('textchange'));">Text Color</button>
+	<div  id="textchange" class="subBox">
 		<div style="height: 40px;">
 			<button onclick="colorise();">Colorise</button>
 			<button onclick="uncolorise();">Uncolorise</button>
-			<button onclick="textarea.innerText = '';">Clear</button>
-			<button onclick="copyText();">Copy</button>
+			
 		</div><br>
 		<div>
-			<input type="radio" name="op" id="rainbow">Rainbow<br>
-			<input type="radio" name="op" checked="true">Random<br>
-			<input type="radio" name="op" id="loops">Loops <input type="number" id="looplength"></textarea><br>
+			<input type="radio" name="op" value="rainbow">Rainbow<br>
+			<input type="radio" name="op" value="random" checked="true">Random<br>
+			<input type="radio" name="op" value="loops">Loops <input type="number" id="looplength"></textarea><br>
+			<input type="radio" name="op" value="color">Color <input type="color" id="coloring"></textarea><br>
 		</div>
 	</div>
 </div><br>
-<div>
-	<button style="vertical-align: top;" onclick="hideshow(document.getElementById('fontchange'));">Text Font</button>
-	<div id="fontchange" style="display:none; min-width:200px; width:max-content; height:max-content;">
-		<div id="fontname" contenteditable="true" spellcheck="false" class="texter"></div><br>
+<div class="outerBox">
+	<button class="rowButton" onclick="hideshow(document.getElementById('fontchange'));">Text Font</button>
+	<div id="fontchange"  class="subBox">
+		<div id="fontname" contenteditable="true" spellcheck="false" class="texter">JetBrains Mono</div><br>
 		<button onclick="setFont(document.getElementById('fontname'));">Set Font</button>
 	</div>
+</div><br>
+<div class="outerBox">
+	<button class="rowButton" onclick="hideshow(document.getElementById('bgchange'));">Background Color</button>
+	<div id="bgchange" class="subBox">
+		<div id="bgcolor" contenteditable="true" spellcheck="false" class="texter">Black</div><br>
+		<button onclick="setBGColor(document.getElementById('bgcolor'));">Set Color</button>
+	</div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>

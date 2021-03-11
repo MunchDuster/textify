@@ -1,32 +1,67 @@
 const loopLength = document.getElementById("looplength");
 const textarea = document.getElementById("text");
-const rainbowCheck = document.getElementById("rainbow");
 const loopsCheck = document.getElementById("loops");
-
+const txtColorButton = document.getElementById("coloring");
 function colorise() {
   const msg = textarea.innerText;
   textarea.innerHTML = "";
   var loopLengths = parseInt(loopLength.value);
   var spacePlaces = [];
-  for (var i = 0; i < msg.length; i++) {
-    if (msg[i] != " ") {
-      var h;
-      if (rainbowCheck.checked) {
-        h = (359 * i) / (msg.length - 1);
-      } else if (loopsCheck.checked) {
-        h = ((i % loopLengths) * 359) / loopLengths;
-      } else {
-        h = Math.random() * 359;
-      }
 
-      var ndiv = document.createElement("div");
-      ndiv.style.display = "inline-block";
-      ndiv.style.color = "hsl(" + h + ",100% , 50%)";
-      ndiv.innerText = msg[i];
-      textarea.appendChild(ndiv);
-    } else {
-      textarea.append(" ");
-    }
+  const selected = document.querySelector('input[name="op"]:checked').value;
+
+  switch (selected) {
+    case "rainbow":
+      for (var i = 0; i < msg.length; i++) {
+        if (msg[i] != " ") {
+          var h = (359 * i) / (msg.length - 1);
+          var ndiv = document.createElement("div");
+          ndiv.style.display = "inline-block";
+          ndiv.style.margin = '0px';
+          ndiv.style.color = "hsl(" + h + ",100% , 50%)";
+          ndiv.innerText = msg[i];
+          textarea.appendChild(ndiv);
+        } else {
+          textarea.append(" ");
+        }
+      }
+      break;
+    case "loops":
+      for (var i = 0; i < msg.length; i++) {
+        if (msg[i] != " ") {
+          var h = ((i % loopLengths) * 359) / loopLengths;
+          var ndiv = document.createElement("div");
+          ndiv.style.display = "inline-block";
+          ndiv.style.margin = '0px';
+          ndiv.style.color = "hsl(" + h + ",100% , 50%)";
+          ndiv.innerText = msg[i];
+          textarea.appendChild(ndiv);
+        } else {
+          textarea.append(" ");
+        }
+      }
+      break;
+    case "random":
+      for (var i = 0; i < msg.length; i++) {
+        if (msg[i] != " ") {
+          var h = Math.random() * 359;
+          var ndiv = document.createElement("div");
+          ndiv.style.display = "inline-block";
+          ndiv.style.margin = '0px';
+          ndiv.style.color = "hsl(" + h + ",100% , 50%)";
+          ndiv.innerText = msg[i];
+          textarea.appendChild(ndiv);
+        } else {
+          textarea.append(" ");
+        }
+      }
+      break;
+    case "color":
+      textarea.innerHTML = msg;
+      textarea.style.color = txtColorButton.value;
+      break;
+    default:
+      alert("text coloring error.");
   }
 }
 function uncolorise() {
@@ -55,23 +90,14 @@ function hideshow(obj) {
 }
 function setFont(fontinput) {
   var fontname = fontinput.innerText;
-  var stylesheet = document.querySelector("link[rel*='stylesheet']");
+  var stylesheet = document.getElementById("fontheader");
 
-  
-  try {
-    var fontLink = "https://fonts.googleapis.com/css2?family=//" + fontname.replace(/ /i, '+') + '&display=swap';
+  if (!document.fonts.check("16px " + fontname)) {
+    addWarning(fontinput, "Could not load font");
     
-    //document.fonts.load("16px " + fontname).then((success) => { alert('duccess');  }, (fail) => { alert(fail);});
-    if (!document.fonts.check("16px " + fontname)) {
-      addWarning(fontinput, "Could not load font");
-      
-    } else {
-      stylesheet.href = fontLink;//fonts.googleapis.com/css?family=" + fontname;
+  } else {
+    stylesheet.href = "https://fonts.googleapis.com/css2?family=//" + fontname.replace(/ /i, '+') + '&display=swap';
     document.body.style.fontFamily = fontname;
-    }
-    
-  } catch (e) {
-    alert(e);
   }
 }
 function addWarning(ele, msg) {
@@ -83,4 +109,20 @@ function addWarning(ele, msg) {
   newdiv.innerText = msg;
   ele.parentNode.insertBefore(newdiv, ele.nextSibling);
   setTimeout(() => { ele.parentNode.removeChild(newdiv); }, 2000);
+}
+function setBGColor(colorinput) {
+  if (isValidColor(colorinput.innerText)){
+    Array.from(document.getElementsByClassName("texter")).forEach((ele) => {
+      ele.style.backgroundColor = colorinput.innerText;
+    });
+  } else {
+    addWarning(colorinput, "Could not set color");
+  }
+}
+function isValidColor(strColor) {
+  var s = new Option().style;
+  s.color = strColor;
+
+  // return 'false' if color wasn't assigned
+  return s.color == strColor.toLowerCase();
 }

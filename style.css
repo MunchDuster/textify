@@ -18,9 +18,36 @@ button:hover{
 	background-color: black;
 	outline: none;
 	display: block;
-
+	min-width: 100px;
+}
+.outerBox{
+	margin-top: 0%;
+	margin-bottom: 0%;
+}
+.subBox{
+	display:none; 
+	position: absolute;
+	width:max-content; 
+	height:max-content; 
+	background-color: rgb(230, 230, 230);
+	margin-top: 0%;
+	margin-bottom: 0%;
 }
 div{
 	margin: 3px;
 	display:inline-block;
+}
+.rowButton{
+	background-color: #f7d200;
+	vertical-align: top;
+	margin-top: 0%;
+	margin-bottom: 0%;
+	height: 40px;
+	width:100px;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+
+}
+.rowButton:hover{
+	background-color: #d4b500;
 }
