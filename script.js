@@ -86,7 +86,7 @@ function copyText() {
   /* Alert the copied text */
 }
 function hideshow(obj) {
-  obj.style.display = obj.style.display != 'none' ? 'none' : 'inline-block';
+  obj.style.display = obj.style.display == 'inline-block' ? 'none' : 'inline-block';
 }
 function setFont(fontinput) {
   var fontname = fontinput.innerText;
@@ -94,11 +94,24 @@ function setFont(fontinput) {
 
   if (!document.fonts.check("16px " + fontname)) {
     addWarning(fontinput, "Could not load font");
-    
   } else {
     stylesheet.href = "https://fonts.googleapis.com/css2?family=//" + fontname.replace(/ /i, '+') + '&display=swap';
-    document.body.style.fontFamily = fontname;
+    Array.from(document.getElementsByClassName("texter")).forEach((ele) => {
+      ele.style.fontFamily = fontname;
+    });
   }
+  /*
+  document.fonts.load("16px " + fontname).then((success) => {
+    alert("duck");
+     stylesheet.href = "https://fonts.googleapis.com/css2?family=//" + fontname.replace(/ /i, '+') + '&display=swap';
+    Array.from(document.getElementsByClassName("texter")).forEach((ele) => {
+      ele.style.fontFamily = fontname;
+    });
+   }, (error) => {
+    alert(error);
+   });
+   */
+  document.body.style.fontSize = document.getElementById("fontsize").value + 'px';
 }
 function addWarning(ele, msg) {
   var newdiv = document.createElement('div');
@@ -126,3 +139,19 @@ function isValidColor(strColor) {
   // return 'false' if color wasn't assigned
   return s.color == strColor.toLowerCase();
 }
+
+var curSelected = null;
+Array.from(document.getElementsByClassName("rowButton")).forEach((ele) => {
+  ele.addEventListener('click', () => {
+    if (curSelected != null) {
+      if (curSelected != ele) {
+        curSelected.click();
+        curSelected = ele;
+      } else {
+        curSelected = null;
+      }
+    }else {
+        curSelected = ele;
+      }
+  });
+});

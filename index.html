@@ -1,13 +1,13 @@
 <html>
 <head>
-<title>RanoColor</title>
+<title>Textify</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" id="fontheader">
 <link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" href="mememan.png" type="image/png">
 
 </head>
-<body style="font-family: 'JetBrains Mono';">
+<body style="font-family: 'JetBrains Mono';font-size: 20px;">
 
 <div id="text" contenteditable="true" spellcheck="false" class="texter" > Write me</div>
 <button onclick="textarea.innerText = '';">Clear</button>
@@ -23,7 +23,7 @@
 		<div>
 			<input type="radio" name="op" value="rainbow">Rainbow<br>
 			<input type="radio" name="op" value="random" checked="true">Random<br>
-			<input type="radio" name="op" value="loops">Loops <input type="number" id="looplength"></textarea><br>
+			<input type="radio" name="op" value="loops">Loops <input type="number" value="15" id="looplength"></textarea><br>
 			<input type="radio" name="op" value="color">Color <input type="color" id="coloring"></textarea><br>
 		</div>
 	</div>
@@ -33,6 +33,7 @@
 	<div id="fontchange"  class="subBox">
 		<div id="fontname" contenteditable="true" spellcheck="false" class="texter">JetBrains Mono</div><br>
 		<button onclick="setFont(document.getElementById('fontname'));">Set Font</button>
+		<input type="number" value="20" id="fontsize">
 	</div>
 </div><br>
 <div class="outerBox">
@@ -42,7 +43,7 @@
 		<button onclick="setBGColor(document.getElementById('bgcolor'));">Set Color</button>
 	</div>
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
