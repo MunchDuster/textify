@@ -50,3 +50,37 @@ function copyText() {
 	
   /* Alert the copied text */
 }
+function hideshow(obj) {
+  obj.style.display = obj.style.display != 'none' ? 'none' : 'inline-block';
+}
+function setFont(fontinput) {
+  var fontname = fontinput.innerText;
+  var stylesheet = document.querySelector("link[rel*='stylesheet']");
+
+  
+  try {
+    var fontLink = "https://fonts.googleapis.com/css2?family=//" + fontname.replace(/ /i, '+') + '&display=swap';
+    
+    //document.fonts.load("16px " + fontname).then((success) => { alert('duccess');  }, (fail) => { alert(fail);});
+    if (!document.fonts.check("16px " + fontname)) {
+      addWarning(fontinput, "Could not load font");
+      
+    } else {
+      stylesheet.href = fontLink;//fonts.googleapis.com/css?family=" + fontname;
+    document.body.style.fontFamily = fontname;
+    }
+    
+  } catch (e) {
+    alert(e);
+  }
+}
+function addWarning(ele, msg) {
+  var newdiv = document.createElement('div');
+  newdiv.style.height = '30px';
+  newdiv.style.width = 'max-content';
+  newdiv.style.backgroundColor = '505000';
+  newdiv.style.color = 'white';
+  newdiv.innerText = msg;
+  ele.parentNode.insertBefore(newdiv, ele.nextSibling);
+  setTimeout(() => { ele.parentNode.removeChild(newdiv); }, 2000);
+}

@@ -2,26 +2,36 @@
 <head>
 <title>RanoColor</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap">
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
 </head>
 <body style="font-family: 'JetBrains Mono';">
 
-<div id="text" contenteditable="true" spellcheck="false" class="texter"></div>
-
-<div style="height: 40px;">
-<button onclick="colorise();" >Colorise</button>
-<button onclick="uncolorise();">Uncolorise</button>
-<button onclick="textarea.innerText = '';">Clear</button>
-<button onclick="copyText();">Copy</button>
+<div id="text" contenteditable="true" spellcheck="false" class="texter" ></div>
+<div>
+	<button style="vertical-align: top;"onclick="hideshow(document.getElementById('textchange'));">Text Color</button>
+	<div id="textchange" style="display:none; width:max-content; height:max-content; background-color: rgb(230, 230, 230);">
+		<div style="height: 40px;">
+			<button onclick="colorise();">Colorise</button>
+			<button onclick="uncolorise();">Uncolorise</button>
+			<button onclick="textarea.innerText = '';">Clear</button>
+			<button onclick="copyText();">Copy</button>
+		</div><br>
+		<div>
+			<input type="radio" name="op" id="rainbow">Rainbow<br>
+			<input type="radio" name="op" checked="true">Random<br>
+			<input type="radio" name="op" id="loops">Loops <input type="number" id="looplength"></textarea><br>
+		</div>
+	</div>
+</div><br>
+<div>
+	<button style="vertical-align: top;" onclick="hideshow(document.getElementById('fontchange'));">Text Font</button>
+	<div id="fontchange" style="display:none; min-width:200px; width:max-content; height:max-content;">
+		<div id="fontname" contenteditable="true" spellcheck="false" class="texter"></div><br>
+		<button onclick="setFont(document.getElementById('fontname'));">Set Font</button>
+	</div>
 </div>
-<div class="section">
-	<input type="radio" name="op" id="rainbow">Rainbow<br>
-	<input type="radio" name="op" checked="true">Random<br>
-	<input type="radio" name="op" id="loops">Loops<input type="number" id="looplength"></textarea><br>
-</div>
-
-
 <script src="script.js"></script>
 </body>
 </html>
